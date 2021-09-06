@@ -41,7 +41,7 @@ fn main() {
         '-' => num1 - num2,
         '*' => num1 * num2,
         '/' => num1 / num2,
-        _ => panic!("Error in operator")
+        _ => panic!("Invalid operator")
     };
 
     println!("The result of {} {} {} = {}", num1, operator, num2, result);
