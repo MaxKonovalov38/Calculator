@@ -45,6 +45,4 @@ fn main() {
     };
 
     println!("The result of {} {} {} = {}", num1, operator, num2, result);
-
-    println!("Thank you for using the calculator!");
 }
