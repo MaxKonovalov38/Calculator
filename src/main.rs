@@ -1,48 +1,44 @@
-use std::io::{stdin, stdout, Write};
+use std::env;
 
-fn read(input: &mut String) {
-    stdout().flush()
-        .expect("failed to flush");
-    stdin().read_line(input)
-        .expect("failed to read");
+struct Caclulator;
 
+#[allow(dead_code)]
+impl Caclulator {
+    fn add(&self, num1: i32, num2: i32) -> i32 {
+        return num1 + num2
+    }
+
+    fn sub(&self, num1: i32, num2: i32) -> i32 {
+        return num1 - num2
+    }
+    
+    fn times(&self, num1: i32, num2: i32) -> i32 {
+        return num1 * num2
+    }
+
+    fn div(&self, num1: i32, num2: i32) -> i32 {
+        return num1 / num2
+    }
 }
 
 fn main() {
-    println!("Calculator!");
-    println!("-----------");
 
-    let mut num1 = String::new();
-    let mut num2 = String::new();
-    let mut operator = String::new();
+    let arguments: Vec<String> = env::args().collect();
+    let command = arguments[1].clone();
 
-    print!("What is the first number?: ");
-    read(&mut num1);
+    let calc1 = Caclulator;
 
-    print!("What is the second number?: ");
-    read(&mut num2);
-
-    print!("what operation would you like to do? [+-*/]: ");
-    read(&mut operator);
-
-    let num1: f32 = num1.trim().parse().unwrap();
-    let num2: f32 = num2.trim().parse().unwrap();
-    let operator: char = operator.trim().chars().next().unwrap();
-
-    let operators = String::from("+-*/");
-
-    if !operators.contains(operator) {
-        println!("Unknown operator!");
-        return;
+    if command == "add" {
+        println!("{}", calc1.add(arguments[2].parse::<i32>().unwrap(), arguments[3].parse::<i32>().unwrap()));
+    }
+    if command == "sub" {
+        println!("{}", calc1.sub(arguments[2].parse::<i32>().unwrap(), arguments[3].parse::<i32>().unwrap()));
+    }
+    if command == "times" {
+        println!("{}", calc1.times(arguments[2].parse::<i32>().unwrap(), arguments[3].parse::<i32>().unwrap()));
+    }
+    if command == "div" {
+        println!("{}", calc1.div(arguments[2].parse::<i32>().unwrap(), arguments[3].parse::<i32>().unwrap()));
     }
 
-    let result = match operator {
-        '+' => num1 + num2,
-        '-' => num1 - num2,
-        '*' => num1 * num2,
-        '/' => num1 / num2,
-        _ => panic!("Invalid operator")
-    };
-
-    println!("The result of {} {} {} = {}", num1, operator, num2, result);
 }
