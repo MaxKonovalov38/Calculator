@@ -22,23 +22,16 @@ impl Caclulator {
 }
 
 fn main() {
-
     let arguments: Vec<String> = env::args().collect();
-    let command = arguments[1].clone();
+    let command: String = arguments[1].clone();
 
     let calc1 = Caclulator;
 
-    if command == "add" {
-        println!("{}", calc1.add(arguments[2].parse::<i32>().unwrap(), arguments[3].parse::<i32>().unwrap()));
+    match command.as_str() {
+        "add" => println!("{}", calc1.add(arguments[2].parse::<i32>().unwrap(), arguments[3].parse::<i32>().unwrap())),
+        "sub" => println!("{}", calc1.sub(arguments[2].parse::<i32>().unwrap(), arguments[3].parse::<i32>().unwrap())),
+        "times" => println!("{}", calc1.times(arguments[2].parse::<i32>().unwrap(), arguments[3].parse::<i32>().unwrap())),
+        "div" => println!("{}", calc1.div(arguments[2].parse::<i32>().unwrap(), arguments[3].parse::<i32>().unwrap())),
+        _ => println!("-- Something else!"),
     }
-    if command == "sub" {
-        println!("{}", calc1.sub(arguments[2].parse::<i32>().unwrap(), arguments[3].parse::<i32>().unwrap()));
-    }
-    if command == "times" {
-        println!("{}", calc1.times(arguments[2].parse::<i32>().unwrap(), arguments[3].parse::<i32>().unwrap()));
-    }
-    if command == "div" {
-        println!("{}", calc1.div(arguments[2].parse::<i32>().unwrap(), arguments[3].parse::<i32>().unwrap()));
-    }
-
 }
